@@ -25,4 +25,5 @@ jobs:
           sonar-exclusion: sonar/*
           cover-file-name: ./coverage.xml
           language: LANGUAGE_PYTHON
+          ref: main
           
