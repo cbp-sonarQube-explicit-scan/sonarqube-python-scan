@@ -20,7 +20,7 @@ jobs:
         uses: cloudbees-io/checkout@v1
 
       - name: Scan with SonarQube bundled
-        uses: https://github.com/cloudbees-io/sonarqube-bundled-sast-scan-code@v1
+        uses: https://github.com/cloudbees-io/sonarqube-bundled-sast-scan-code@v2
         with:
           sonar-exclusion: sonar/*
           cover-file-name: ./coverage.xml
