@@ -1,13 +1,11 @@
-name: sonarqube-bundled-plugin-python
+name: sonarqube-hybrid-plugin-python
 kind: workflow
 apiVersion: automation.cloudbees.io/v1alpha1
 
 on:
   workflow_dispatch:
-  # push:
-  #   branches:
-  #     - 'master'
-
+  schedule:
+    - cron: 30 3 * * *
 permissions:
   scm-token-own: read
   scm-token-org: read
@@ -18,11 +16,12 @@ jobs:
     steps:        
       - name: checkout Source Code
         uses: cloudbees-io/checkout@v1
-
-      - name: Scan with SonarQube bundled
-        uses: https://github.com/cloudbees-io/sonarqube-bundled-sast-scan-code@v2
+        
+      - name: Setup sonarqube explicit scanner with community edition
+        uses: cloudbees-io/sonarqube-plugin@v1
         with:
-          sonar-exclusion: sonar/*
-          cover-file-name: ./coverage.xml
-          language: LANGUAGE_PYTHON
+          url: 'https://sonarqube.saas-preprod.beescloud.com'
+          username: ${{ secrets.SONARQUBE_USERNAME }}
+          password: ${{ secrets.SONARQUBE_PASSWORD }}
+          ref: main
           
