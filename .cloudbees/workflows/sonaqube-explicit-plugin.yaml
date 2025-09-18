@@ -1,6 +1,6 @@
 name: sonarqube-hybrid-plugin-python
 kind: workflow
-apiVersion: automation.cloudbees.io/v1alpha1
+apiVersion: automation.cloudbees.io/v1alpha1 
 
 on:
   workflow_dispatch:
